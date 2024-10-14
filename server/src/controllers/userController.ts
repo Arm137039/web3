@@ -28,20 +28,46 @@ class UserController {
             return;
         } catch (error) {
             console.error('Erreur lors de la création du compte :', error);
-            res.status(500).json({ message: 'Erreur serveur.' });
+            res.status(500).json({ message: 'Erreur serveur. register' });
             return;
         }
     };
+
     static login: RequestHandler = async (req, res, next) => {
         try {
-            const {email, password} = req.body;
+            const { email, password } = req.body;
+
+            // provisoire
+            if (email === 'admin@email' && password === 'password') {
+                // Générer un token JWT avec des informations spécifiques pour l'admin
+                const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+                res.json({ token });
+                return;
+            }
 
             // Vérifier si l'utilisateur existe
-            //Todo: vérifier si l'utilisateur existe
-            //Todo: si oui vérifier si le mot de passe est correct
+            const user = await User.findOne({ where: { email } });
+            if (!user) {
+                res.status(400).json({ message: 'Email ou mot de passe incorrect.' });
+                return;
+            }
+
+            // Comparer le mot de passe
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                res.status(400).json({ message: 'Email ou mot de passe incorrect.' });
+                return;
+            }
+
+            // Générer un token JWT
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+
+            // Envoyer le token au client
+            res.json({ token });
+            return;
         } catch (error) {
             console.error('Erreur lors de la connexion :', error);
-            res.status(500).json({message: 'Erreur serveur.'});
+            res.status(500).json({ message: 'Erreur serveur. login' });
             return;
         }
     };
