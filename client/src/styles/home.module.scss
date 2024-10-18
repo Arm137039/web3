@@ -1,0 +1,109 @@
+/* Home.module.scss */
+/* Variables */
+$turquoise: #00A4A6;
+$light-turquoise: #E0F7F7;
+$hover-turquoise: #007F80;
+$white: #ffffff;
+$dark-bg: #1c1c1c; // Couleur de fond sombre
+$dark-text: #f0f0f0; // Couleur du texte sombre
+
+/* Réinitialiser les marges et paddings pour html et body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Empêche le défilement */
+}
+
+/* Mixins */
+@mixin button-style($bg-color, $border-color, $hover-bg) {
+  background-color: $bg-color;
+  border-color: $border-color;
+  font-size: 2.5rem; /* Taille du texte des boutons augmentée */
+  padding: 30px 60px; /* Agrandir le padding des boutons */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-bg;
+    border-color: $hover-bg;
+  }
+}
+
+.homeContainer {
+  /* Fond dégradé avec nuances de turquoise */
+  background: linear-gradient(135deg, $turquoise 0%, $light-turquoise 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  width: 100vw; /* Prend toute la largeur de l'écran */
+  padding: 0; /* Pas de padding pour éliminer les bordures blanches */
+  margin: 0; /* Pas de marges pour le conteneur */
+}
+
+.light {
+  background: linear-gradient(135deg, $turquoise 0%, $light-turquoise 100%);
+  color: $dark-text; // Texte en couleur claire
+}
+
+.dark {
+  background: $dark-bg; // Fond sombre
+  color: $white; // Texte en blanc
+}
+
+/* Modifiez la couleur du titre et des boutons en fonction du thème */
+.homeTitle {
+  color: inherit; // Utilise la couleur héritée du conteneur
+  font-size: 6rem; /* Taille du titre très augmentée */
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.ant-btn-primary {
+  @include button-style($turquoise, $turquoise, $hover-turquoise);
+  color: $white;
+}
+
+.ant-btn-default {
+  @include button-style($white, $turquoise, rgba(0, 164, 166, 0.1));
+  color: $turquoise;
+}
+
+.dark .ant-btn-default {
+  background-color: transparent; // Arrière-plan transparent pour le bouton
+  color: $white; // Texte en blanc
+}
+
+.fadeIn {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.themeToggleButton {
+  background: transparent;
+  border: none; /* Pas de bordure */
+  color: inherit; /* Couleur héritée pour s'adapter au mode */
+  cursor: pointer; /* Curseur pointer pour indiquer un clic */
+}
+
+.dark .themeToggleButton {
+  color: $white; // Couleur pour le mode sombre
+}
+
+.light .themeToggleButton {
+  color: $dark-text; // Couleur pour le mode clair
+}
