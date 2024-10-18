@@ -7,7 +7,11 @@
     "strict": true,                         // Activer toutes les vérifications strictes
     "esModuleInterop": true,                // Support pour les imports ES6
     "forceConsistentCasingInFileNames": true, // Force la cohérence de la casse dans les noms de fichiers
-    "skipLibCheck": true                    // Ignore la vérification des types des fichiers de déclaration
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,                   // Ignore la vérification des types des fichiers de déclaration
+    "sourceMap": true
   },
   "include": ["src"],                       // Inclure le dossier src
   "exclude": ["node_modules"]               // Exclure le dossier node_modules
