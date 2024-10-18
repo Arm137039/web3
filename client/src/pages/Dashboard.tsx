@@ -13,7 +13,6 @@ const Dashboard: React.FC = () => {
         <div>
             <h2>Bienvenue sur votre tableau de bord</h2>
             <button onClick={handleLogout}>Se déconnecter</button>
-            {/* Contenu du tableau de bord */}
         </div>
     );
 };

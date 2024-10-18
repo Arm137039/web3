@@ -6,4 +6,5 @@ import { updateMovieDatabase } from '../controllers/movieController';
 cron.schedule('0 3 * * *', () => {
     console.log('Mise à jour quotidienne des films à 3h du matin');
     updateMovieDatabase();
-});*/
+});
+*/
