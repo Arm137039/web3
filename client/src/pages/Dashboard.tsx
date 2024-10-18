@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
+import { Button } from "antd";
 
 const Dashboard: React.FC = () => {
     const { setIsAuthenticated } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Dashboard: React.FC = () => {
     return (
         <div>
             <h2>Bienvenue sur votre tableau de bord</h2>
-            <button onClick={handleLogout}>Se déconnecter</button>
+            <Button onClick={handleLogout}>Se déconnecter</Button>
             {/* Contenu du tableau de bord */}
         </div>
     );

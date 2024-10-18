@@ -1,0 +1,89 @@
+/* Variables */
+$turquoise: #00A4A6;
+$light-turquoise: #E0F7F7;
+$dark-bg: #1c1c1c; // Couleur de fond sombre
+$dark-text: #f0f0f0; // Couleur du texte sombre
+$white: #ffffff; // Couleur du texte blanc
+
+/* Réinitialiser les marges et paddings pour html et body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Empêche le défilement */
+}
+
+/* Conteneur de la page de connexion */
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+/* Mode clair */
+.light {
+  background: linear-gradient(135deg, $turquoise 0%, $light-turquoise 100%);
+  color: $dark-text; // Couleur du texte en mode clair
+}
+
+/* Mode sombre */
+.dark {
+  background: $dark-bg; // Fond sombre
+  color: $white; // Texte en blanc
+}
+
+/* Titre de la page de connexion */
+.signInTitle {
+  color: $white; // Changer la couleur en blanc
+  font-size: 8rem; /* Augmenter la taille du titre */
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+
+/* Style du formulaire de connexion */
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Largeur maximum pour le formulaire */
+  margin: -50px auto 0; /* Déplace le formulaire vers le haut */
+}
+
+/* Champ d'entrée */
+.inputField {
+  width: 100%; /* Prendre toute la largeur disponible */
+  margin: 10px 0; /* Augmenter la marge verticale entre les champs */
+  padding: 10px; /* Ajoute un peu de padding */
+  font-size: 1.5rem; /* Taille du texte */
+  border-radius: 8px; /* Coins arrondis */
+}
+
+/* Bouton de soumission */
+.submitButton {
+  font-size: 2rem; /* Taille du texte */
+  padding: 25px 30px; /* Padding pour le bouton */
+  margin-top: 20px; /* Ajoute une marge au-dessus du bouton pour augmenter l'écart */
+}
+
+
+/* Bouton pour basculer entre le mode sombre et clair */
+.themeToggleButton {
+  background: transparent;
+  border: none; /* Pas de bordure */
+  color: inherit; /* Couleur héritée pour s'adapter au mode */
+  cursor: pointer; /* Curseur pointer pour indiquer un clic */
+}
+
+.dark .themeToggleButton {
+  color: $white; // Couleur pour le mode sombre
+}
+
+.light .themeToggleButton {
+  color: $dark-text; // Couleur pour le mode clair
+}
