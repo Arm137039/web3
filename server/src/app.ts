@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+
 import 'reflect-metadata';
 import { AppDataSource } from './data-source';
 
@@ -17,13 +18,13 @@ app.use(cors({
 AppDataSource.initialize()
     .then(() => {
         console.log('Connecté à la base de données');
-        const port = process.env.PORT || 3000;
-        app.listen(port, () => {
-            console.log(`Le serveur est lancé sur le port ${port}`);
-        });
     })
     .catch((error) => console.log('Erreur lors de la connexion à la base de données :', error));
 
+const port = process.env.PORT;
+app.listen(port, () => {
+    console.log(`Le serveur est lancé sur le port ${port}`);
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
