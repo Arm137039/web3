@@ -1,0 +1,46 @@
+/* Variables */
+$turquoise: #00A4A6;
+$light-turquoise: #E0F7F7;
+$dark-bg: #1c1c1c;
+$dark-text: #f0f0f0;
+$white: #ffffff;
+
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.5s;
+  &.dark {
+    background: $dark-bg;
+    color: $white; // Couleur du texte
+  }
+  &.light {
+    background: linear-gradient(135deg, $turquoise 0%, $light-turquoise 100%);
+    color: $dark-text; // Couleur du texte
+  }
+}
+
+.themeToggleButton {
+  // Styles pour le bouton de changement de thème
+}
+
+.signUpTitle {
+  // Styles pour le titre
+}
+
+.signUpForm {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.inputField {
+  margin-bottom: 15px;
+}
+
+.selectField {
+  margin-bottom: 15px;
+}
+
+.submitButton {
+  width: 100%;
+}

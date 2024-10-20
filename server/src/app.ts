@@ -6,6 +6,7 @@ import 'reflect-metadata';
 import { AppDataSource } from './data-source';
 
 import userRoutes from './routes/userRoutes';
+import movieRoutes from './routes/movieRoutes';
 import './jobs/updateMoviesJob';
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', userRoutes);
 
+app.use('/api/movies', movieRoutes);
 
 //provisoire
 app.get('/api', (req, res) => {

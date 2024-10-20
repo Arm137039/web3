@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 class UserController {
     static register: RequestHandler = async (req, res, next) => {
         try {
-            const { email, password } = req.body;
+            const { firstName, lastName, email, nickname, password, birthDate, streamingProviders } = req.body;
             const userRepository = AppDataSource.getRepository(User);
 
             const existingUser = await userRepository.findOneBy({ email });
@@ -16,11 +16,22 @@ class UserController {
                 return;
             }
 
+            const existingNickname = await userRepository.findOneBy({ nickname });
+            if (existingNickname) {
+                res.status(400).json({ message: 'Ce surnom est déjà utilisé.' });
+                return;
+            }
+
             const hashedPassword = await bcrypt.hash(password, 10);
 
             const user = new User();
+            user.firstName = firstName;
+            user.lastName = lastName;
             user.email = email;
+            user.nickname = nickname;
             user.password = hashedPassword;
+            user.birthDate = new Date(birthDate);
+            user.streamingProviders = streamingProviders;
 
             await userRepository.save(user);
 

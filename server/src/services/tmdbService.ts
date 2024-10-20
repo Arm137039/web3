@@ -1,17 +1,14 @@
 import axios from 'axios';
 
 const apiKey = process.env.TMDB_API_KEY;
+const baseUrl = 'https://api.themoviedb.org/3';
 
-export const fetchPopularMovies = async () => {
-    try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular`, {
-            params: {
-                api_key: apiKey,
-            },
-        });
-        return response.data.results;
-    } catch (error) {
-        console.error('Erreur lors de la récupération des films populaires:', error);
-        throw error;
-    }
-};
+export const tmdbApi = axios.create({
+    baseURL: baseUrl,
+    params: {
+        api_key: apiKey,
+        language: 'fr-FR', // Vous pouvez changer la langue si vous le souhaitez
+    },
+});
+
+export default tmdbApi;
